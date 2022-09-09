@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/da5bf7244f.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <main>
+      <section class="task-section">
+        <div class="nav-task">
+          <h2>Done</h2>
+          <button class="add-task popUp-button" id="done-task"><span class="plus">+</span>Add task</button>
+        </div>
+        <div class="tasks-container droppable" id="done-container"></div>
+      </section>
+      <section class="task-section">
+        <div class="nav-task">
+          <h2>In progress</h2>
+          <button class="add-task popUp-button" id="progress-task">
+            <span class="plus">+</span>Add task
+          </button>
+        </div>
+        <div class="tasks-container droppable" id="progress-container"></div>       
+        </div>
+      </section>
+      <section class="task-section">
+        <div class="nav-task">
+          <h2>In queue</h2>
+          <button class="add-task popUp-button" id="queue-task">
+            <span class="plus">+</span>Add task
+          </button>
+        </div>
+        <div class="tasks-container droppable" id="queue-container"></div>
+      </section>
+    </main>
+    <div class="task-popup hidden">
+      <form autocomplete="off">
+        <div class="close-button popUp-button"><i class="fas fa-times"></i></div>
+        <section class="form-section">
+          <div>
+            <label for="task-name">
+              <h2>Name</h2>
+            </label>
+            <div class="input-container">
+              <input type="text" id="task-name" />
+              <div class="insert-name hidden">Insert name</div>
+            </div>
+          </div>
+          <div>
+            <label for="task-description">
+              <h2>Description</h2>
+            </label>
+            <div class="textarea-container">
+              <textarea id="task-description"></textarea>
+              <div class="insert-description hidden">Insert description</div>
+            </div>
+          </div>
+
+          <div class="button-div">
+            <button class="submit-task">Submit</button>
+          </div>
+        </section>
+      </form>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="toggle">
+      <i class="fas fa-sun"></i>
+      <i class="fas fa-moon"></i>
+    </label>
+    
+  </body>
+  <script src="script.js"></script>
+</html>

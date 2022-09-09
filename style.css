@@ -1,0 +1,451 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body,
+html {
+  max-width: 100%;
+  position: relative;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+section.task-section {
+  height: 50vh;
+  width: 30vw;
+  margin: 20px;
+}
+
+section h2,
+label {
+  background: rgb(1, 0, 255);
+  background: linear-gradient(
+    135deg,
+    rgba(1, 0, 255, 1) 0%,
+    rgba(80, 85, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 40px;
+}
+
+.tasks-container {
+  width: 100%;
+  height: 100%;
+  background-color: #ddd;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.tasks-container div:first-child {
+  margin-top: 0;
+}
+
+.tasks-container div:last-child {
+  margin-bottom: 0;
+}
+
+.nav-task {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+button.add-task {
+  background: rgb(25, 215, 0);
+  background: linear-gradient(
+    135deg,
+    rgba(25, 215, 0, 1) 0%,
+    rgba(25, 255, 50, 1) 100%
+  );
+  border-radius: 20px;
+  border: none;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.task-popup {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.7);
+  display: flex;
+  backdrop-filter: blur(3px);
+}
+
+form {
+  position: relative;
+  width: 60vw;
+  height: 70vh;
+  background-color: white;
+  margin: auto;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+label h2 {
+  margin-bottom: 2vh;
+}
+
+textarea {
+  width: 40vw;
+  height: 30vh;
+  resize: none;
+  border-radius: 20px;
+  border: 3px solid #555;
+  padding: 30px;
+  font-size: 20px;
+  outline: none;
+}
+
+.form-section div {
+  margin: 30px;
+}
+
+input {
+  vertical-align: top;
+  width: 40vw;
+  height: 50px;
+  border-radius: 20px;
+  border: 3px solid #555;
+  padding: 0 30px;
+  font-size: 24px;
+  outline: none;
+}
+
+.button-div {
+  text-align: right;
+}
+
+.submit-task {
+  background: rgb(25, 215, 0);
+  background: linear-gradient(
+    135deg,
+    rgba(25, 215, 0, 1) 0%,
+    rgba(25, 255, 50, 1) 100%
+  );
+  border-radius: 20px;
+  border: none;
+  padding: 15px 35px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.task-wrapper {
+  position: relative;
+  height: 86px;
+}
+
+.task {
+  background-color: #ccc;
+  border-radius: 20px;
+  padding: 15px;
+  max-height: 84px;
+  overflow: hidden;
+  border: 2px solid royalblue;
+  margin: 2px 0 !important;
+  flex-shrink: 0;
+  position: relative;
+  touch-action: none;
+}
+
+.task-draggable {
+  position: absolute;
+  width: 30%;
+  z-index: 100;
+}
+
+.task:hover {
+  max-height: 100vh;
+  height: auto;
+  cursor: pointer;
+}
+
+.task h3 {
+  color: green;
+  margin-bottom: 10px;
+}
+
+.input-container {
+  position: relative;
+  margin: 0 !important;
+}
+
+.insert-name {
+  position: absolute;
+  margin: 0 !important;
+  top: 50%;
+  left: 20%;
+  transform: translateY(-50%);
+  background-color: rgb(230, 68, 68);
+  padding: 10px 40px;
+  border-radius: 10px;
+}
+
+.insert-name::before,
+.insert-description::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -14px;
+  width: 15px;
+  height: 20px;
+  background-color: inherit;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  transform: translateY(-50%);
+}
+
+.textarea-container {
+  position: relative;
+  margin: 0 !important;
+}
+
+.insert-description {
+  position: absolute;
+  margin: 0 !important;
+  top: 40px;
+  left: 20%;
+  transform: translateY(-50%);
+  background-color: rgb(230, 68, 68);
+  padding: 10px 40px;
+  border-radius: 10px;
+}
+
+.plus {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+label.switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  font-size: 20px;
+}
+
+input[type='checkbox'] {
+  opacity: 0;
+  width: 100%;
+}
+
+.fa-sun,
+.fa-moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  transition: 0.5s linear;
+  color: rgb(255, 238, 0);
+  cursor: pointer;
+}
+
+.fa-moon {
+  opacity: 0;
+}
+
+#toggle:checked ~ .fa-moon {
+  opacity: 1;
+}
+
+#toggle:checked ~ .fa-sun {
+  opacity: 0;
+}
+
+.dark-mode-body {
+  background-color: #333;
+}
+
+.dark-mode {
+  background-color: #666;
+  color: #fff;
+}
+
+.dark-mode-task {
+  background-color: #555;
+  color: #fff;
+}
+
+.dark-mode-task h3 {
+  color: rgb(0, 195, 0);
+}
+
+.close-task {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  opacity: 0;
+}
+
+.task:hover .close-task {
+  opacity: 1;
+}
+
+.close-task:hover {
+  color: #f00;
+}
+
+::-webkit-scrollbar {
+  background-color: #222;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 195, 0);
+  border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+  body {
+    overflow-y: hidden;
+    padding-bottom: 20px;
+  }
+
+  html {
+    overflow-y: scroll;
+  }
+
+  main {
+    flex-direction: column;
+    padding-bottom: 60px;
+  }
+
+  section.task-section {
+    width: 90%;
+    padding-bottom: 50px;
+    height: 70vh;
+  }
+
+  label h3,
+  h3 {
+    font-size: 30px;
+  }
+
+  .task-draggable {
+    width: 90%;
+  }
+
+  .nav-task {
+    margin-top: 40px;
+  }
+
+  .task {
+    max-height: 96px;
+  }
+
+  .task:hover {
+    max-height: auto;
+  }
+
+  label.switch {
+    width: 30px;
+    height: 30px;
+  }
+
+  .fa-sun,
+  .fa-moon {
+    font-size: 30px;
+  }
+
+  #toggle {
+    height: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .task {
+    height: 60px;
+    padding: 5px 20px;
+  }
+
+  .task h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  form {
+    margin: auto;
+    width: 80%;
+    height: 80%;
+  }
+
+  section h2 {
+    font-size: 20px;
+  }
+
+  .form-section {
+    width: 90%;
+  }
+
+  #task-name,
+  #task-description {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .submit-task {
+    padding: 10px 20px;
+  }
+
+  .form-section div {
+    margin: 20px 10px;
+  }
+
+  .button-div {
+    margin: 10px !important;
+  }
+
+  .close-button {
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+  }
+
+  .nav-task h2 {
+    font-size: 26px !important;
+  }
+}
+
+@media (max-height: 750px) {
+  form {
+    height: 90%;
+  }
+}
