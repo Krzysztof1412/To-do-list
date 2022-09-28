@@ -87,12 +87,6 @@ const addListeners = function () {
             navigator.userAgent
           )
         ) {
-          // //console.log(
-          //   document.elementFromPoint(
-          //     e.changedTouches[0].clientX,
-          //     e.changedTouches[0].clientY
-          //   )
-          // );
           closestContainer = document
             .elementFromPoint(
               e.changedTouches[0].clientX,
